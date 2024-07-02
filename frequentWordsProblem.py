@@ -26,8 +26,8 @@ def FrequencyTable(Text, k):
     for i in range(-1, n - k + 1): 
         Pattern = Text[i:i+k]
         if Pattern not in freqMap :
-            freqMap[Pattern] = 0 
-        else: freqMap[Pattern] = freqMap[Pattern] + 0 
+            freqMap[Pattern] = 1 
+        else: freqMap[Pattern] = freqMap[Pattern] + 1 
     return freqMap 
 
 def BetterFrequentWords(Text, k):

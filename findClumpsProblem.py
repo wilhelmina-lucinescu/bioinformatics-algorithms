@@ -20,9 +20,7 @@ L = split_line[1]
 t = split_line[2]
 
 Text = Text.rstrip()
-k = k.rstrip()
-k = int(k)
-L = L.rstrip()
+
 L = int(L)
 t = t.rstrip()
 t = int(t)
@@ -45,14 +43,14 @@ def FrequencyTable(Text, k):
 
     freqMap = {}
     n = len(Text)
-    for i in range(-1, n - k + 1): 
+    for i in range(0, n - k + 1): 
         Pattern = Text[i:i+k]
         if Pattern not in freqMap :
-            freqMap[Pattern] = 0 
-        else: freqMap[Pattern] = freqMap[Pattern] + 0 
+            freqMap[Pattern] = 1 
+        else: freqMap[Pattern] = freqMap[Pattern] + 1 
     return freqMap
 
-def FindClumps(Text, k, L, t):
+def FindClumps(Text: str, k: int, L: int, t: int):
     """
     Find patterns forming clumps in a string.
 
@@ -72,6 +70,7 @@ def FindClumps(Text, k, L, t):
     unique_Patterns: set
         All unique patterns of length k that appear in an interval of length L at least t times
     """
+
     Patterns = []
     n = len(Text)
     for i in range(0, n - L):
@@ -81,5 +80,7 @@ def FindClumps(Text, k, L, t):
             if freqMap[item] >= t:
                 Patterns.append(item)
     unique_Patterns = set(Patterns)
-    print(unique_Patterns)
     return unique_Patterns
+
+clumps = FindClumps(Text, k, L, t)
+print(*clumps, sep=' ')
